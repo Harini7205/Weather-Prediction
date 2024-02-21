@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Weather Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h1>PREDICT THE WEATHER!</h1>
+        <form class="form-container" method="POST" action="/submit">
+            <div class="input-box">
+                <label for="long">Enter longitude:</label>
+                <input type="text" class="long" name="long">
+            </div>
+            <div class="input-box">
+                <label for="lat">Enter latitude:</label>
+                <input type="text" class="lat" name="lat"> 
+            </div>
+            <button class="btn" type="submit">Get Weather</button>
+        </form>
+    </div>
+    <%if (locals.content){%>
+        <div class="hidden">
+            <p>The entered coordinates correspond to <%=content.name%>,<%=content.sys.country%></p>
+            <p>The weather is <%=content.weather && content.weather.length > 0 ? content.weather[0].description : 'N/A' %></p>
+            <p>The temperature currently is <%=(content.main.temp-273.15).toFixed(1)%></p>
+        </div>
+    <%}%>
+</body>
+</html>
