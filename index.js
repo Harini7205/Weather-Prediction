@@ -1,10 +1,13 @@
 import axios from "axios";
 import express from "express";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+
+dotenv.config()
 
 const app=express();
 const port=3000;
-const apiKey="7d8fe4cf9d91a060a9ba4d30a8fd6f4d";
+const apiKey=process.env.WEATHER_API_KEY;
 var data=null;
 
 app.use(express.static("public"));
@@ -31,4 +34,5 @@ app.post("/submit",async(req,res)=>{
 
 app.listen(port,()=>{
     console.log("Server listening at port "+port);
+
 })
